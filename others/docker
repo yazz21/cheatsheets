@@ -7,6 +7,9 @@ docker run -ti <image-name> /bin/bash
 # To "shell" into a running container (docker-1.3+):
 docker exec -ti <container-name> bash
 
+# To "shell" into a running container with Admin Privillage docker-1.3+):
+docker exec -ti --user root <container-name> bash
+
 # To inspect a running container:
 docker inspect <container-name> (or <container-id>)
 

@@ -33,3 +33,6 @@ wget -S --spider -O - <url>
 
 # To change the User-Agent to 'User-Agent: toto':
 wget -U 'toto' <url>
+
+# To Download The whole wesite
+wget --mirror --convert-links --adjust-extension --page-requisites --no-parent <url>
