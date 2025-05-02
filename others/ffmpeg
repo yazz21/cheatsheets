@@ -33,3 +33,19 @@ ffmpeg -i input_video.mov -vcodec copy -acodec copy output_video.mp4
 # -autoexit : closes ffplay as soon as the audio finishes
 ffmpeg -ss 00:34:24.85 -t 10 -i path/to/file.mp4 -f mp3 pipe:play | ffplay -i pipe:play -autoexit
 
+# to minimize video size
+ffmpeg -i input.mp4 output.mp4
+# you can also specify resolution
+ffmpeg -i input.mp4 -vf scale=640:360 output.mp4
+
+# to split video from specific start time to specific end time
+ffmpeg -ss 00:01:00 -to 00:02:00 -i input.mp4 -c copy output.mp4
+
+# to extract audio from video
+ffmpeg -i pentatoch_output.mp4 -vn -acodec copy penta_output-audio.aac
+
+# combine audio and picture
+ ffmpeg -loop 1 -i input.png -i input-audio.aac -shortest out.mp4
+
+ # to merge 3 videos files 
+ ffmpeg -i opening.mkv -i episode.mkv -i ending.mkv -filter_complex "[0:v] [0:a] [1:v] [1:a] [2:v] [2:a] concat=n=3:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" output.mkv
